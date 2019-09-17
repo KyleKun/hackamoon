@@ -5,6 +5,7 @@ import 'package:hackamoon/schedule_page.dart';
 import 'package:hackamoon/doubts_page.dart';
 import 'package:hackamoon/instructions_page.dart';
 import 'package:hackamoon/main_page.dart';
+import 'package:hackamoon/oval-right-clipper.dart';
 
 void main() => runApp(Hackamoon());
 
@@ -22,6 +23,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _page = 2;
+
+  final Color primary = Color(0xff291747);
+  final Color active = Color(0xff6C48AB);
 
   final InstructionsPage _instructions = new InstructionsPage();
   final SchedulePage _schedule = new SchedulePage();
@@ -57,6 +61,81 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  Widget _buildRow(IconData icon, String title){
+    final TextStyle tStyle = TextStyle(color: active, fontSize: 16.0);
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(children: [
+        Icon(icon, color: active,),
+        SizedBox(width: 10.0),
+        Text(title, style: tStyle,),
+      ]),
+    );
+  }
+
+  Divider _buildDivider(){
+    return Divider(
+        color: active,
+    );
+  }
+
+  _buildDrawer(){
+    final String teamImage = 'assets/image_team.jpg';
+    return ClipPath(
+      clipper: OvalRightBorderClipper(),
+      child: Container(
+        padding: const EdgeInsets.only(left: 16.0, right: 40),
+        decoration: BoxDecoration(
+          color: primary,
+          boxShadow: [
+            BoxShadow(color: Colors.black54)
+          ]
+        ),
+        width: 300,
+
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.centerRight,
+                  child: IconButton(
+                    icon: Icon(Icons.info_outline, color: active,),
+                    onPressed: (){},
+                  ),
+                ),
+                Container(
+                  height: 90,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient:
+                      LinearGradient(colors: [Colors.deepPurple, Colors.black54])),
+                  child: CircleAvatar(
+                  radius: 40,
+                    backgroundImage: AssetImage(teamImage),
+                  ),
+                ),
+                SizedBox(height: 5.0),
+                Text(
+                  'Time 123',
+                  //TODO style: ,
+                ),
+                SizedBox(height: 30.0),
+                _buildRow(Icons.all_inclusive, 'Desafio 1'),
+                _buildDivider(),
+                _buildRow(Icons.all_inclusive, 'Desafio 2'),
+                _buildDivider(),
+                _buildRow(Icons.star_border, 'Avaliar Hackathon'),
+                _buildDivider(),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -75,45 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: new Drawer(
-        child: ListView(
-          children: <Widget>[
-            new UserAccountsDrawerHeader(
-              accountName: new Text('Time 123'),
-              accountEmail: null,
-              currentAccountPicture: new CircleAvatar(
-                backgroundColor: Colors.yellow,
-              ),
-            ),
-            new ListTile(
-              title: new Text('Desafio 1'),
-              onTap: () {
-                print('TODO');
-              },
-            ),
-            new Divider(
-              color: Colors.black,
-              height: 5.0,
-            ),
-            new ListTile(
-              title: new Text('Desafio 2'),
-              onTap: () {
-                print('TODO');
-              },
-            ),
-            new Divider(
-              color: Colors.black,
-              height: 5.0,
-            ),
-            new ListTile(
-              title: new Text('Avaliar Hackathon'),
-              onTap: () {
-                print('TODO');
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: _buildDrawer(),
       body: Container(
         child: _showPage,
       ),
