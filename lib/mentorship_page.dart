@@ -4,35 +4,41 @@ class MentorshipPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-         Expanded(
-          flex: 5,
-          child: Padding(padding: EdgeInsets.all(10.0),
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: <Widget>[
+          Expanded(
+            flex: 0,
             child: Center(
-              child: Text("Mentoria!"
-              ) ,
+              child: Text("Dashboard"),
             ),
           ),
-         ),
-         Expanded(
-           child: FlatButton(
-              color: Colors.teal,
-              //textColor: Colors.white,
-              disabledColor: Colors.grey,
-              disabledTextColor: Colors.black,
-              padding: EdgeInsets.all(0),
-              splashColor: Colors.blueAccent,
-             onPressed: () {
-               /*...*/
-              },
-            child: Text(
-              "Agendar Mentoria",
+          Expanded(
+            child: Text("Desenvolvimento"),
+          ),
+          Expanded(
+            child: Center(
+              child: Text("Mentoria"),
             ),
-            ),
+          ),
+          Expanded(
+            child: flatButton,
           )
-      ]
-    );
+        ]);
   }
+
+  FlatButton flatButton = FlatButton(
+    color: Colors.teal,
+    //textColor: Colors.white,
+    disabledColor: Colors.grey,
+    disabledTextColor: Colors.black,
+    padding: EdgeInsets.all(0),
+    splashColor: Colors.blueAccent,
+    onPressed: () {
+      /*...*/
+    },
+    child: Text(
+      "Agendar Mentoria",
+    ),
+  );
 }
