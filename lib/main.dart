@@ -1,11 +1,11 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:hackamoon/mentorship_page.dart';
-import 'package:hackamoon/schedule_page.dart';
-import 'package:hackamoon/doubts_page.dart';
-import 'package:hackamoon/instructions_page.dart';
-import 'package:hackamoon/main_page.dart';
-import 'package:hackamoon/oval-right-clipper.dart';
+import 'package:hackamoon/pages/mentorship_page.dart';
+import 'package:hackamoon/pages/schedule_page.dart';
+import 'package:hackamoon/pages/doubts_page.dart';
+import 'package:hackamoon/pages/instructions_page.dart';
+import 'package:hackamoon/pages/main_page.dart';
+import 'package:hackamoon/utils/oval-right-clipper.dart';
 
 void main() => runApp(Hackamoon());
 
@@ -61,76 +61,90 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Widget _buildRow(IconData icon, String title){
-    final TextStyle tStyle = TextStyle(color: active, fontSize: 16.0);
+  Widget _buildRow(IconData icon, String title, Color iconColor) {
+    final TextStyle tStyle = TextStyle(color: active, fontSize: 18.0);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(children: [
-        Icon(icon, color: active,),
+        Icon(
+          icon,
+          color: iconColor,
+        ),
         SizedBox(width: 10.0),
-        Text(title, style: tStyle,),
+        Text(
+          title,
+          style: tStyle,
+        ),
       ]),
     );
   }
 
-  Divider _buildDivider(){
+  Divider _buildDivider() {
     return Divider(
-        color: active,
+      color: active,
     );
   }
 
-  _buildDrawer(){
+  _buildDrawer() {
     final String teamImage = 'assets/image_team.jpg';
     return ClipPath(
       clipper: OvalRightBorderClipper(),
       child: Container(
         padding: const EdgeInsets.only(left: 16.0, right: 40),
         decoration: BoxDecoration(
-          color: primary,
-          boxShadow: [
-            BoxShadow(color: Colors.black54)
-          ]
-        ),
+            color: primary, boxShadow: [BoxShadow(color: Colors.black54)]),
         width: 300,
-
         child: SafeArea(
           child: SingleChildScrollView(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: IconButton(
-                    icon: Icon(Icons.info_outline, color: active,),
-                    onPressed: (){},
+              child: Column(
+            children: <Widget>[
+              Container(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.info_outline,
+                    color: Colors.purple[500],
                   ),
+                  onPressed: () {},
                 ),
-                Container(
-                  height: 90,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    gradient:
-                      LinearGradient(colors: [Colors.deepPurple, Colors.black54])),
-                  child: CircleAvatar(
-                  radius: 40,
-                    backgroundImage: AssetImage(teamImage),
-                  ),
+              ),
+              Container(
+                height: 700,
+                alignment: Alignment.topCenter,
+                child: Column(
+                  children: <Widget>[
+                    CircleAvatar(
+                      radius: 90,
+                      backgroundImage: AssetImage(teamImage),
+                    ),
+                    SizedBox(height: 15.0,),
+                    Text(
+                      'Time 123',
+                      style: TextStyle(
+                          fontSize: 26.0,
+                          foreground: Paint()
+                            ..style = PaintingStyle.fill
+                            ..color = Colors.white,
+                      ),
+                    ),
+                    SizedBox(height: 30.0),
+                    _buildRow(Icons.all_inclusive, 'Desafio 1', Colors.blue),
+                    _buildDivider(),
+                    _buildRow(Icons.all_inclusive, 'Desafio 2', Colors.blue),
+                    _buildDivider(),
+                    _buildRow(Icons.star_border, 'Avaliar Hackathon', Colors.yellow[800]),
+                    _buildDivider(),
+                    SizedBox(height: 110.0,),
+                    Text(
+                      '                         Hackamoon© 2019',
+                      style: TextStyle(color: Colors.purple[500]),
+                    )
+                  ],
                 ),
-                SizedBox(height: 5.0),
-                Text(
-                  'Time 123',
-                  //TODO style: ,
-                ),
-                SizedBox(height: 30.0),
-                _buildRow(Icons.all_inclusive, 'Desafio 1'),
-                _buildDivider(),
-                _buildRow(Icons.all_inclusive, 'Desafio 2'),
-                _buildDivider(),
-                _buildRow(Icons.star_border, 'Avaliar Hackathon'),
-                _buildDivider(),
-              ],
-            ),
-          ),
+              ),
+            ],
+          )),
+          //SizedBox(height: 1.0),
         ),
       ),
     );
@@ -142,7 +156,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text('Hackamoon'),
         centerTitle: true,
-        backgroundColor: Colors.teal,
+        backgroundColor: primary,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.people),
@@ -160,15 +174,15 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       bottomNavigationBar: CurvedNavigationBar(
         index: _page,
-        color: Colors.white,
-        backgroundColor: Colors.teal,
+        color: primary,
+        backgroundColor: active,
         animationCurve: Curves.easeInOut,
         items: <Widget>[
-          Icon(Icons.assignment),
-          Icon(Icons.access_time),
-          Icon(Icons.apps),
-          Icon(Icons.people),
-          Icon(Icons.help)
+          Icon(Icons.assignment, color: Colors.white,),
+          Icon(Icons.access_time, color: Colors.white,),
+          Icon(Icons.apps, color: Colors.white,),
+          Icon(Icons.people, color: Colors.white,),
+          Icon(Icons.help, color: Colors.white,)
         ],
         onTap: (int tappedIndex) {
           setState(() {
