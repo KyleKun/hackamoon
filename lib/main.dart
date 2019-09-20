@@ -159,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: primary,
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.people),
+            icon: Icon(Icons.more_vert),
             onPressed: () {
               //TODO
               print(
