@@ -1,18 +1,27 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:hackamoon/pages/mentorship_page.dart';
+import 'package:hackamoon/pages/menu_tab.dart';
 import 'package:hackamoon/pages/schedule_page.dart';
 import 'package:hackamoon/pages/doubts_page.dart';
 import 'package:hackamoon/pages/instructions_page.dart';
 import 'package:hackamoon/pages/main_page.dart';
-import 'package:hackamoon/utils/oval-right-clipper.dart';
+import 'package:hackamoon/utils/colors.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'dart:io';
+
+MyColors myColors = MyColors();
+MenuTab menuTab = MenuTab();
 
 void main() => runApp(Hackamoon());
 
 class Hackamoon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: new HomeScreen());
+    return MaterialApp(
+      home: new HomeScreen(),
+      theme: ThemeData(fontFamily: 'CaviarDreams'),
+    );
   }
 }
 
@@ -23,9 +32,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _page = 2;
-
-  final Color primary = Color(0xff291747);
-  final Color active = Color(0xff6C48AB);
 
   final InstructionsPage _instructions = new InstructionsPage();
   final SchedulePage _schedule = new SchedulePage();
@@ -61,128 +67,60 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Widget _buildRow(IconData icon, String title, Color iconColor) {
-    final TextStyle tStyle = TextStyle(color: active, fontSize: 18.0);
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 8.0),
-      child: Row(children: [
-        Icon(
-          icon,
-          color: iconColor,
-        ),
-        SizedBox(width: 10.0),
-        Text(
-          title,
-          style: tStyle,
-        ),
-      ]),
-    );
-  }
-
-  Divider _buildDivider() {
-    return Divider(
-      color: active,
-    );
-  }
-
-  _buildDrawer() {
-    final String teamImage = 'assets/image_team.jpg';
-    return ClipPath(
-      clipper: OvalRightBorderClipper(),
-      child: Container(
-        padding: const EdgeInsets.only(left: 16.0, right: 40),
-        decoration: BoxDecoration(
-            color: primary, boxShadow: [BoxShadow(color: Colors.black54)]),
-        width: 300,
-        child: SafeArea(
-          child: SingleChildScrollView(
-              child: Column(
-            children: <Widget>[
-              Container(
-                alignment: Alignment.centerRight,
-                child: IconButton(
-                  icon: Icon(
-                    Icons.info_outline,
-                    color: Colors.purple[500],
-                  ),
-                  onPressed: () {},
-                ),
-              ),
-              Container(
-                height: 700,
-                alignment: Alignment.topCenter,
-                child: Column(
-                  children: <Widget>[
-                    CircleAvatar(
-                      radius: 90,
-                      backgroundImage: AssetImage(teamImage),
-                    ),
-                    SizedBox(height: 15.0,),
-                    Text(
-                      'Time 123',
-                      style: TextStyle(
-                          fontSize: 26.0,
-                          foreground: Paint()
-                            ..style = PaintingStyle.fill
-                            ..color = Colors.white,
-                      ),
-                    ),
-                    SizedBox(height: 30.0),
-                    _buildRow(Icons.all_inclusive, 'Desafio 1', Colors.blue),
-                    _buildDivider(),
-                    _buildRow(Icons.all_inclusive, 'Desafio 2', Colors.blue),
-                    _buildDivider(),
-                    _buildRow(Icons.star_border, 'Avaliar Hackathon', Colors.yellow[800]),
-                    _buildDivider(),
-                    SizedBox(height: 110.0,),
-                    Text(
-                      '                         Hackamoon© 2019',
-                      style: TextStyle(color: Colors.purple[500]),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          )),
-          //SizedBox(height: 1.0),
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        title: Text('Hackamoon'),
+        title: Text(
+          'Hackamoon',
+          style: TextStyle(fontFamily: 'CaviarDreamsBold'),
+        ),
         centerTitle: true,
-        backgroundColor: primary,
+        backgroundColor: myColors.primary,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.more_vert),
-            onPressed: () {
-              //TODO
-              print(
-                  'Lista de todos os organizadores, mentores e patrocinadores');
+          PopupMenuButton<String>(
+            onSelected: choiceAction,
+            itemBuilder: (BuildContext context) {
+              return Constants.choices.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
             },
           ),
         ],
       ),
-      drawer: _buildDrawer(),
+      drawer: menuTab.createMenuTab(),
       body: Container(
         child: _showPage,
       ),
       bottomNavigationBar: CurvedNavigationBar(
         index: _page,
-        color: primary,
-        backgroundColor: active,
+        color: myColors.primary,
+        backgroundColor: myColors.active,
         animationCurve: Curves.easeInOut,
         items: <Widget>[
-          Icon(Icons.assignment, color: Colors.white,),
-          Icon(Icons.access_time, color: Colors.white,),
-          Icon(Icons.apps, color: Colors.white,),
-          Icon(Icons.people, color: Colors.white,),
-          Icon(Icons.help, color: Colors.white,)
+          Icon(
+            Icons.assignment,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.access_time,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.apps,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.people,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.help,
+            color: Colors.white,
+          )
         ],
         onTap: (int tappedIndex) {
           setState(() {
@@ -192,4 +130,63 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  void choiceAction(String choice) {
+    if (choice == Constants.Organization) {
+      Alert(
+        context: context,
+        type: AlertType.info,
+        title: 'Organização',
+        desc: 'PATROCINADORES\n- Nasa\n- Faustão\n- Zoobomafoo\n\n'
+            'APOIO\n- Turma da Mônica\n\n'
+            'REALIZAÇÃO\n- República Federativa Russa',
+        buttons: [
+          DialogButton(
+            color: Colors.green,
+            width: 200.0,
+            child: Text(
+              'OK',
+              style: TextStyle(fontSize: 18.0, color: Colors.white),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ).show();
+    } else if (choice == Constants.About) {
+      Alert(
+        context: context,
+        type: AlertType.none,
+        title: 'Desenvolvedores',
+        desc: 'Caio Pedroso\n(github.com/KyleKun)\n\n'
+              'Emerson Silva\n(github.com/eps364)\n\n'
+              'Gabriel Oliveira\n(github.com/Bluemarino)',
+        buttons: [
+          DialogButton(
+            color: Colors.green,
+            width: 200.0,
+            child: Text(
+              r'\(*v*)/',
+              style: TextStyle(fontSize: 18.0, color: Colors.white),
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ).show();
+
+    } else if (choice == Constants.Exit) {
+      exit(0);
+    }
+  }
+}
+
+class Constants {
+  static const String Organization = 'Organização';
+  static const String About = 'Sobre';
+  static const String Exit = 'Sair';
+
+  static const List<String> choices = <String>[Organization, About, Exit];
 }
