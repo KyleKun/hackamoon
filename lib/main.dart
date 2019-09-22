@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:hackamoon/pages/mentorship_page.dart';
-import 'package:hackamoon/pages/menu_tab.dart';
 import 'package:hackamoon/pages/schedule_page.dart';
 import 'package:hackamoon/pages/doubts_page.dart';
 import 'package:hackamoon/pages/instructions_page.dart';
@@ -11,7 +10,6 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'dart:io';
 
 MyColors myColors = MyColors();
-MenuTab menuTab = MenuTab();
 
 void main() => runApp(Hackamoon());
 
@@ -38,6 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final MainPage _main = MainPage();
   final MentorshipPage _mentorship = new MentorshipPage();
   final DoubtsPage _doubts = new DoubtsPage();
+  final String teamImage = 'assets/image_team.jpg';
+  final TextStyle tStyle = TextStyle(color: myColors.text, fontSize: 18.0);
 
   Widget _showPage = new MainPage();
 
@@ -91,7 +91,95 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      drawer: menuTab.createMenuTab(),
+      drawer: new Drawer(
+        child: Container(
+          color: myColors.primary,
+          child: ListView(
+            children: <Widget>[
+              new Padding(
+                padding: EdgeInsets.only(left: 30.0, right: 30.0),
+                child: CircleAvatar(
+                  backgroundImage: AssetImage(teamImage),
+                  radius: 120,
+                ),
+              ),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Shawee Team',
+                    style: TextStyle(
+                      fontSize: 26.0,
+                      fontFamily: 'CaviarDreamsBold',
+                      foreground: Paint()
+                        ..style = PaintingStyle.fill
+                        ..color = Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+              new SizedBox(
+                height: 20.0,
+              ),
+              new ListTile(
+                leading: Icon(Icons.all_inclusive, color: Colors.blue),
+                title: new Text(
+                  'Desafio 1',
+                  style: tStyle,
+                ),
+                onTap: () {
+                  //TODO
+                },
+              ),
+              new Divider(
+                color: myColors.text,
+                height: 5.0,
+              ),
+              new ListTile(
+                leading: Icon(Icons.all_inclusive, color: Colors.blue),
+                title: new Text(
+                  'Desafio 2',
+                  style: tStyle,
+                ),
+                onTap: () {
+                  //TODO
+                },
+              ),
+              new Divider(
+                color: myColors.text,
+                height: 5.0,
+              ),
+              new ListTile(
+                leading: Icon(Icons.star, color: myColors.accent),
+                title: new Text(
+                  'Avaliar Hackathon',
+                  style: tStyle,
+                ),
+                onTap: () {
+                  //TODO
+                },
+              ),
+              new Divider(
+                color: myColors.text,
+                height: 5.0,
+              ),
+              new SizedBox(height: 100.0,),
+              new Container(
+                color: myColors.active,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(width: 50.0,),
+                    Icon(Icons.chevron_left, color: Colors.blue,),
+                    Icon(Icons.chevron_right, color: myColors.accent),
+                    Text('Hackamoon - 2019', style: tStyle,),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       body: Container(
         child: _showPage,
       ),
@@ -160,8 +248,8 @@ class _HomeScreenState extends State<HomeScreen> {
         type: AlertType.none,
         title: 'Desenvolvedores',
         desc: 'Caio Pedroso\n(github.com/KyleKun)\n\n'
-              'Emerson Silva\n(github.com/eps364)\n\n'
-              'Gabriel Oliveira\n(github.com/Bluemarino)',
+            'Emerson Silva\n(github.com/eps364)\n\n'
+            'Gabriel Oliveira\n(github.com/Bluemarino)',
         buttons: [
           DialogButton(
             color: Colors.green,
@@ -176,7 +264,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ).show();
-
     } else if (choice == Constants.Exit) {
       exit(0);
     }

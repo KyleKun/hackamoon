@@ -26,6 +26,7 @@ dependencies:
   curved_navigation_bar: ^0.3.1
   gradient_widgets: ^0.5.0
   rflutter_alert: ^1.0.3
+  flip_card: ^0.4.1
 
 dev_dependencies:
   flutter_test:
@@ -47,7 +48,7 @@ flutter:
   assets:
     - assets/image_team.jpg
     - assets/indiana.jpg
-    - assets/robin.jpg
+    - assets/kaori.jpg
     - assets/batman.jpg
     - assets/shrek.jpg
     - assets/et.jpg
