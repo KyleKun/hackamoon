@@ -1,16 +1,24 @@
 # hackamoon
 
-A new Flutter project.
+Projeto criado para o OpenHack da Shawee.
 
-## Getting Started
+## Sobre
 
-This project is a starting point for a Flutter application.
+Este app é uma poderosa ferramenta para a organização de Hackathons.
+Os participantes conseguem visualizar facilmente as informações mais relevantes, como:
 
-A few resources to get you started if this is your first Flutter project:
+- Horários;
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Regulamento;
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Desafios;
+
+- Organização;
+
+- Instruções para submissão de projetos.
+
+A principal feature é a possibilidade de agendar mentoria em tempo real.
+
+Remember, when hacking after midinigth or at noon, you need hackamoon! :)
+
+Obrigado, Thanks, Gracias, Arigatou!
