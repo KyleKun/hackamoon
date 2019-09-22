@@ -128,7 +128,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: tStyle,
                 ),
                 onTap: () {
-                  //TODO
+                  Alert(
+                    context: context,
+                    title: 'Desafio 1',
+                    type: AlertType.info,
+                    desc: 'Criar uma plataforma de IA capaz de calcular quantos'
+                        ' ovos uma galinha consegue botar ao longo de sua vida.',
+                    buttons: [
+                      DialogButton(
+                        color: Colors.green,
+                        width: 200.0,
+                        child: Text(
+                          'Easy',
+                          style: TextStyle(fontSize: 18.0, color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ).show();
                 },
               ),
               new Divider(
@@ -142,7 +161,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: tStyle,
                 ),
                 onTap: () {
-                  //TODO
+                  Alert(
+                    context: context,
+                    title: 'Desafio 2',
+                    type: AlertType.info,
+                    desc: 'Criar um app em COBOL para calcular a soma de dois'
+                        ' números inteiros e dividir por dois, mostrando o resultado.',
+                    buttons: [
+                      DialogButton(
+                        color: Colors.red,
+                        width: 200.0,
+                        child: Text(
+                          'Hard',
+                          style: TextStyle(fontSize: 18.0, color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  ).show();
                 },
               ),
               new Divider(
@@ -156,23 +194,136 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: tStyle,
                 ),
                 onTap: () {
-                  //TODO
+                  Alert(
+                    context: context,
+                    title: 'Avaliar Hackathon',
+                    type: AlertType.none,
+                    desc: 'Conte pra gente o que você achou do hackathon.',
+                    buttons: [
+                      DialogButton(
+                        color: Colors.red,
+                        width: 80.0,
+                        child: Text(
+                          'Méeeh',
+                          style: TextStyle(fontSize: 14.0, color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Alert(
+                            context: context,
+                            title: 'Sentimos muito...',
+                            type: AlertType.info,
+                            desc:
+                                'Poxa =[\nManda um e-mail com sugestões pra gente, prometemos melhorar!',
+                            buttons: [
+                              DialogButton(
+                                color: Colors.green,
+                                width: 200.0,
+                                child: Text(
+                                  'OK',
+                                  style: TextStyle(
+                                      fontSize: 18.0, color: Colors.white),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          ).show();
+                        },
+                      ),
+                      DialogButton(
+                        color: Colors.orange,
+                        width: 80.0,
+                        child: Text(
+                          'MaioMeno',
+                          style: TextStyle(fontSize: 14.0, color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Alert(
+                            context: context,
+                            title: 'Sentimos muito...',
+                            type: AlertType.info,
+                            desc:
+                                'Poxa =[\nManda um e-mail com sugestões pra gente, prometemos melhorar!',
+                            buttons: [
+                              DialogButton(
+                                color: Colors.green,
+                                width: 200.0,
+                                child: Text(
+                                  'OK',
+                                  style: TextStyle(
+                                      fontSize: 18.0, color: Colors.white),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          ).show();
+                        },
+                      ),
+                      DialogButton(
+                        color: Colors.green,
+                        width: 80.0,
+                        child: Text(
+                          'Curti =]',
+                          style: TextStyle(fontSize: 14.0, color: Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                          Alert(
+                            context: context,
+                            title: 'Aí sim!',
+                            type: AlertType.success,
+                            desc:
+                                'Boaaa!!!\nFoi um prazer tê-lo aqui conosco, contamos com você nos próximos xD',
+                            buttons: [
+                              DialogButton(
+                                color: Colors.green,
+                                width: 200.0,
+                                child: Text(
+                                  'OK',
+                                  style: TextStyle(
+                                      fontSize: 18.0, color: Colors.white),
+                                ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          ).show();
+                        },
+                      ),
+                    ],
+                  ).show();
                 },
               ),
               new Divider(
                 color: myColors.text,
                 height: 5.0,
               ),
-              new SizedBox(height: 100.0,),
+              new SizedBox(
+                height: 100.0,
+              ),
               new Container(
                 color: myColors.active,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(width: 50.0,),
-                    Icon(Icons.chevron_left, color: Colors.blue,),
+                    SizedBox(
+                      width: 50.0,
+                    ),
+                    Icon(
+                      Icons.chevron_left,
+                      color: Colors.blue,
+                    ),
                     Icon(Icons.chevron_right, color: myColors.accent),
-                    Text('Hackamoon - 2019', style: tStyle,),
+                    Text(
+                      'Hackamoon - 2019',
+                      style: tStyle,
+                    ),
                   ],
                 ),
               ),

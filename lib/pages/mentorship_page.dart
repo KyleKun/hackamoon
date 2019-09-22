@@ -180,7 +180,7 @@ class _MentorshipPageState extends State<MentorshipPage> {
               ],
             ),
 
-            //Indiana Jones
+            //Manda Chuva
 
             FlipCard(
               key: cardKey1,
