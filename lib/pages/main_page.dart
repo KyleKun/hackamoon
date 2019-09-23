@@ -20,8 +20,8 @@ class _MainPageState extends State<MainPage> {
   static var numberLeft = random.nextInt(5)+2;
 
   List mentor = ['Nenhuma mentoria agendada...\nConsulte a página de mentores.',
-  '- Indiana Jones (Business)\nFaltam $numberLeft times antes da sua vez =]',
-  '- Robin Hood (UX/Design)\nFaltam $numberLeft times antes da sua vez =]',
+  '- Manda Chuva (Business)\nFaltam $numberLeft times antes da sua vez =]',
+  '- Kaori (UX/Design)\nFaltam $numberLeft times antes da sua vez =]',
   '- Bruce Wayne (Development)\nFaltam $numberLeft times antes da sua vez =]',
   '- Shrek (Business)\nFaltam $numberLeft times antes da sua vez =]',
   '- ET (Alien) (UX/Design)\nFaltam $numberLeft times antes da sua vez =]'];
