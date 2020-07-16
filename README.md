@@ -23,6 +23,5 @@ Remember, when hacking after midnight or at noon, you need hackamoon! :)
 
 Obrigado, Thanks, Gracias, Arigatou!
 
-![alt text](https://github.com/KyleKun/hackamoon/blob/dev/images/menu_tab.jpg)
-![alt text](https://github.com/KyleKun/hackamoon/blob/dev/images/home.jpg)
-![alt text](https://github.com/KyleKun/hackamoon/blob/dev/images/mentorship.jpg)
+<img src="https://github.com/KyleKun/hackamoon/blob/dev/images/menu_tab.jpg" alt="menu" width="200"/><img src="https://github.com/KyleKun/hackamoon/blob/dev/images/home.jpg" alt="home" width="200"/><img src="https://github.com/KyleKun/hackamoon/blob/dev/images/mentorship.jpg" alt="mentorship" width="200"/>
+
